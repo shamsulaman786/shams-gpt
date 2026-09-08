@@ -127,257 +127,12 @@ st.session_state.setdefault("dark_mode", False)  # light mode is the default
 # ----------------------------------------------------------------------------
 # Theme
 # ----------------------------------------------------------------------------
-if st.session_state.dark_mode:
-    st.markdown(
-        """
-        <style>
-        .stApp, [data-testid="stSidebar"], [data-testid="stHeader"],
-        [data-testid="stBottom"], [data-testid="stBottomBlockContainer"] {
-            background-color: #173c30; color: #e8f2eb;
-        }
-        [data-testid="stSidebar"] { border-right: 1px solid #315d4a; }
-        .stApp p, .stApp li, .stApp label,
-        .stApp h1, .stApp h2, .stApp h3 { color: #e8f2eb; }
-        [data-testid="stChatMessage"] { background-color: #204a3a; border-radius: 10px; }
-
-        /* Chat input: the box and the text typed into it */
-        /* BaseWeb wraps the textarea in several divs that keep a light
-           background of their own, so paint the wrappers too. */
-        [data-testid="stChatInput"],
-        [data-testid="stChatInput"] div,
-        [data-testid="stChatInput"] [data-baseweb="textarea"],
-        [data-testid="stChatInput"] [data-baseweb="base-input"] {
-            background-color: #285440 !important;
-        }
-        [data-testid="stChatInput"] { border: 1px solid #527664; }
-        [data-testid="stChatInputTextArea"] { color: #e8f2eb !important; }
-        [data-testid="stChatInputTextArea"]::placeholder { color: #a9c0b1 !important; }
-
-        /* Sidebar buttons, including the disabled current-chat entry */
-        [data-testid="stSidebar"] .stButton
-            button:not([data-testid="stBaseButton-primary"]) {
-            background-color: #285440; color: #e8f2eb; border: 1px solid #527664;
-        }
-        [data-testid="stSidebar"] .stButton button:disabled,
-        [data-testid="stSidebar"] .stButton button:disabled p {
-            color: #d5e7db !important; background-color: #315d4a; opacity: 1;
-        }
-        [data-testid="stSidebar"] .stButton button p { color: inherit !important; }
-
-        /* Summarize Conversation expander: header bar and body */
-        [data-testid="stExpander"] details,
-        [data-testid="stExpander"] summary,
-        [data-testid="stExpanderDetails"] {
-            background-color: #204a3a !important;
-            color: #e8f2eb !important;
-        }
-        [data-testid="stExpander"] details { border: 1px solid #527664 !important; }
-        [data-testid="stExpander"] summary p,
-        [data-testid="stExpander"] summary span,
-        [data-testid="stExpander"] [data-testid="stIconMaterial"] {
-            color: #e8f2eb !important;
-        }
-
-        /* Buttons in the main pane, e.g. Generate summary */
-        [data-testid="stMainBlockContainer"] [data-testid="stBaseButton-secondary"] {
-            background-color: #285440 !important;
-            color: #e8f2eb !important;
-            border: 1px solid #527664 !important;
-        }
-
-        /* Markdown tables in assistant replies */
-        .stApp table, .stApp th, .stApp td {
-            color: #e8f2eb !important;
-            border-color: #527664 !important;
-        }
-        .stApp thead th { background-color: #285440 !important; }
-        .stApp tbody td { background-color: #204a3a !important; }
-        .stApp tbody tr:nth-child(even) td { background-color: #1b4234 !important; }
-
-        /* Section separators */
-        [data-testid="stSidebar"] hr, .stApp hr { border-color: #527664; }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
-
-st.markdown(
-    """
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
-
-    :root {
-        --ink: #153b2b;
-        --muted: #557565;
-        --paper: #e8f4eb;
-        --panel: #1d5a40;
-        --panel-ink: #edf8f0;
-        --line: #c5ddcc;
-        --accent: #2f8158;
-        --accent-dark: #236844;
-        --sidebar: #10402d;
-    }
-
-    .stApp {
-        background: var(--paper);
-        color: var(--ink);
-        font-family: 'DM Sans', sans-serif;
-    }
-    [data-testid="stHeader"] { background: transparent; }
-    [data-testid="stBottom"],
-    [data-testid="stBottom"] > div,
-    [data-testid="stBottomBlockContainer"],
-    [data-testid="stBottomBlockContainer"] > div {
-        background: var(--paper) !important;
-        border-top: 0 !important;
-    }
-    [data-testid="stMainBlockContainer"] {
-        max-width: 1120px;
-        padding-top: 3rem;
-        padding-bottom: 8rem;
-    }
-    [data-testid="stSidebar"] {
-        background: var(--sidebar);
-        border-right: 0;
-    }
-    [data-testid="stSidebar"] * { color: #edf0ed; }
-    [data-testid="stSidebar"] hr { border-color: rgba(255,255,255,.14); }
-    [data-testid="stSidebar"] h1,
-    [data-testid="stSidebar"] h2,
-    [data-testid="stSidebar"] h3 {
-        font-family: 'Space Grotesk', sans-serif;
-        letter-spacing: 0;
-    }
-    h1, h2, h3 {
-        color: var(--ink);
-        font-family: 'Space Grotesk', sans-serif;
-        letter-spacing: 0;
-    }
-    h1 { font-size: clamp(2rem, 4vw, 3.35rem) !important; line-height: 1.05 !important; }
-    [data-testid="stCaptionContainer"] { color: var(--muted); }
-    .empty-state {
-        max-width: 620px;
-        margin: 5.5rem auto 0;
-        text-align: center;
-    }
-    .empty-state-kicker {
-        color: var(--accent);
-        font-size: .72rem;
-        font-weight: 700;
-        letter-spacing: .14em;
-        text-transform: uppercase;
-    }
-    .empty-state-title {
-        color: var(--ink);
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 2rem;
-        font-weight: 600;
-        line-height: 1.15;
-        margin-top: .8rem;
-    }
-    .empty-state-copy {
-        color: var(--muted);
-        font-size: 1rem;
-        margin-top: .65rem;
-    }
-
-    [data-testid="stChatMessage"] {
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        background: var(--panel);
-        box-shadow: 0 8px 28px rgba(24, 71, 44, .08);
-        margin: .9rem 0;
-        padding: 1rem 1.15rem;
-    }
-    [data-testid="stChatMessage"] p,
-    [data-testid="stChatMessage"] li,
-    [data-testid="stChatMessage"] strong,
-    [data-testid="stChatMessage"] code {
-        color: var(--panel-ink) !important;
-    }
-    [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] p {
-        line-height: 1.7;
-    }
-    [data-testid="stChatInput"] {
-        border: 1px solid #bdd8c5;
-        border-radius: 16px;
-        background: var(--panel);
-        box-shadow: 0 10px 30px rgba(24, 71, 44, .13);
-        padding: .25rem .35rem;
-        margin: 0 auto;
-        max-width: 820px;
-    }
-    [data-testid="stChatInput"] > div,
-    [data-testid="stChatInput"] [data-baseweb="textarea"],
-    [data-testid="stChatInput"] [data-baseweb="base-input"] {
-        background: var(--panel) !important;
-    }
-    [data-testid="stChatInput"] textarea {
-        font-family: 'DM Sans', sans-serif;
-        color: var(--panel-ink) !important;
-        caret-color: var(--panel-ink) !important;
-    }
-    [data-testid="stChatInput"] textarea::placeholder { color: #b8d9c3 !important; }
-    [data-testid="stChatInput"]:focus-within {
-        border-color: #fff !important;
-        box-shadow: 0 0 0 2px rgba(184, 217, 195, .3),
-            0 10px 30px rgba(24, 71, 44, .13) !important;
-    }
-    [data-testid="stChatInputTextArea"]:focus,
-    [data-testid="stChatInputTextArea"]:focus-visible {
-        outline: none !important;
-        border-color: #b8d9c3 !important;
-        box-shadow: none !important;
-    }
-    .st-emotion-cache-jchovf:focus-within { border-color: #fff !important; }
-    [data-testid="stChatInput"] button {
-        background: var(--accent) !important;
-        border-radius: 11px !important;
-        color: white;
-    }
-    [data-testid="stChatInput"] button:hover { background: var(--accent-dark) !important; }
-    [data-testid="stExpander"] details {
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        background: var(--panel);
-    }
-    [data-testid="stExpander"] summary { padding: .8rem 1rem; }
-    [data-testid="stExpander"] summary p,
-    [data-testid="stExpander"] [data-testid="stExpanderDetails"] p {
-        color: var(--panel-ink) !important;
-    }
-    [data-testid="stExpander"] summary p { font-weight: 600; }
-    [data-testid="stExpander"] summary svg { color: var(--accent); }
-    [data-testid="stBaseButton-secondary"],
-    [data-testid="stBaseButton-primary"] {
-        border-radius: 10px !important;
-        font-family: 'DM Sans', sans-serif !important;
-        font-weight: 600 !important;
-    }
-    [data-testid="stBaseButton-primary"] {
-        background: var(--accent) !important;
-        border-color: var(--accent) !important;
-    }
-    [data-testid="stBaseButton-primary"]:hover {
-        background: var(--accent-dark) !important;
-        border-color: var(--accent-dark) !important;
-    }
-    [data-testid="stSidebar"] [data-testid="stBaseButton-secondary"] {
-        background: rgba(255,255,255,.08) !important;
-        border-color: rgba(255,255,255,.12) !important;
-    }
-    [data-testid="stSidebar"] [data-testid="stBaseButton-secondary"]:hover {
-        background: rgba(255,255,255,.16) !important;
-    }
-    .stAppDeployButton,
-    button.stAppDeployButton,
-    [data-testid="stAppDeployButton"],
-    [data-testid="stAppDeployButton"] button { display: none !important; }
-    [data-testid="stSidebar"] .stButton button { width: 100%; }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+styles = Path(__file__).with_name("style.css").read_text(encoding="utf-8")
+dark_start = styles.index("/* DARK_MODE_START */")
+dark_end = styles.index("/* DARK_MODE_END */") + len("/* DARK_MODE_END */")
+if not st.session_state.dark_mode:
+    styles = styles[:dark_start] + styles[dark_end:]
+st.markdown(f"<style>{styles}</style>", unsafe_allow_html=True)
 
 # ----------------------------------------------------------------------------
 # Sidebar: new chat, history, settings
@@ -484,11 +239,39 @@ def clean(text):
 
 
 # --- User input -------------------------------------------------------------
-if prompt := st.chat_input("What would you like to know?"):
+with st.bottom:
+    upload_col, input_col = st.columns([0.08, 0.92], vertical_alignment="bottom")
+    with upload_col:
+        uploaded_file = st.file_uploader(
+            "+",
+            type=["txt", "md", "py", "json", "csv", "html", "css", "js"],
+            label_visibility="collapsed",
+            help="Attach a text-based file",
+        )
+    with input_col:
+        prompt = st.chat_input("What would you like to know?")
+
+attachment_context = ""
+if uploaded_file is not None:
+    try:
+        attachment_text = uploaded_file.getvalue().decode("utf-8")
+        attachment_context = (
+            f"\n\nAttached file: {uploaded_file.name}\n"
+            "```text\n"
+            f"{attachment_text[:12000]}\n"
+            "```"
+        )
+        if len(attachment_text) > 12000:
+            st.toast("Only the first 12,000 characters will be sent.")
+    except UnicodeDecodeError:
+        st.error("This file is not valid UTF-8 text and cannot be attached.")
+
+if prompt:
     if not st.session_state.messages:
         st.session_state.title = make_title(prompt)
 
-    st.session_state.messages.append({"role": "user", "content": prompt})
+    message_content = prompt + attachment_context
+    st.session_state.messages.append({"role": "user", "content": message_content})
     save_chat()
 
     with st.chat_message("user"):

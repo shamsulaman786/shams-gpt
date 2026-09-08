@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+    --ink: #153b2b;
+    --muted: #557565;
+    --paper: #e8f4eb;
+    --panel: #1d5a40;
+    --panel-ink: #edf8f0;
+    --line: #c5ddcc;
+    --accent: #2f8158;
+    --accent-dark: #236844;
+    --sidebar: #10402d;
+}
+
+.stApp {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+}
+[data-testid="stHeader"] { background: transparent; }
+[data-testid="stBottom"],
+[data-testid="stBottom"] > div,
+[data-testid="stBottomBlockContainer"],
+[data-testid="stBottomBlockContainer"] > div {
+    background: var(--paper) !important;
+    border-top: 0 !important;
+}
+[data-testid="stMainBlockContainer"] {
+    max-width: 1120px;
+    padding-top: 3rem;
+    padding-bottom: 8rem;
+}
+[data-testid="stSidebar"] {
+    background: var(--sidebar);
+    border-right: 0;
+}
+[data-testid="stSidebar"] * { color: #edf0ed; }
+[data-testid="stSidebar"] hr { border-color: rgba(255,255,255,.14); }
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3,
+h1, h2, h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 0;
+}
+h1, h2, h3 { color: var(--ink); }
+h1 { font-size: clamp(2rem, 4vw, 3.35rem) !important; line-height: 1.05 !important; }
+[data-testid="stCaptionContainer"] { color: var(--muted); }
+.empty-state {
+    max-width: 620px;
+    margin: 5.5rem auto 0;
+    text-align: center;
+}
+.empty-state-kicker {
+    color: var(--accent);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+.empty-state-title {
+    color: var(--ink);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.15;
+    margin-top: .8rem;
+}
+.empty-state-copy {
+    color: var(--muted);
+    font-size: 1rem;
+    margin-top: .65rem;
+}
+[data-testid="stChatMessage"] {
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--panel);
+    box-shadow: 0 8px 28px rgba(24, 71, 44, .08);
+    margin: .9rem 0;
+    padding: 1rem 1.15rem;
+}
+[data-testid="stChatMessage"] p,
+[data-testid="stChatMessage"] li,
+[data-testid="stChatMessage"] strong,
+[data-testid="stChatMessage"] code {
+    color: var(--panel-ink) !important;
+}
+[data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] p { line-height: 1.7; }
+[data-testid="stChatInput"] {
+    height: 58px;
+    box-sizing: border-box;
+    border: 1px solid #bdd8c5;
+    border-radius: 16px;
+    background: var(--panel);
+    box-shadow: 0 10px 30px rgba(24, 71, 44, .13);
+    padding: .25rem .35rem;
+    width: 100%;
+    margin: 0;
+    max-width: none;
+}
+[data-testid="stBottom"] [data-testid="stHorizontalBlock"] {
+    width: min(900px, calc(100% - 2rem));
+    margin: 0 auto;
+    gap: .5rem;
+    align-items: end;
+}
+[data-testid="stBottom"] [data-testid="stColumn"] {
+    padding: 0 !important;
+}
+[data-testid="stChatInput"] > div,
+[data-testid="stChatInput"] [data-baseweb="textarea"],
+[data-testid="stChatInput"] [data-baseweb="base-input"] {
+    height: 100% !important;
+    min-height: 0 !important;
+    background: var(--panel) !important;
+}
+[data-testid="stChatInput"] textarea {
+    height: 100% !important;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    padding: .75rem .85rem !important;
+    resize: none !important;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--panel-ink) !important;
+    caret-color: var(--panel-ink) !important;
+}
+[data-testid="stChatInput"] textarea::placeholder { color: #b8d9c3 !important; }
+[data-testid="stChatInput"]:focus-within {
+    border-color: #fff !important;
+    box-shadow: 0 0 0 2px rgba(184, 217, 195, .3), 0 10px 30px rgba(24, 71, 44, .13) !important;
+}
+[data-testid="stChatInputTextArea"]:focus,
+[data-testid="stChatInputTextArea"]:focus-visible {
+    outline: none !important;
+    border-color: #b8d9c3 !important;
+    box-shadow: none !important;
+}
+.st-emotion-cache-jchovf:focus-within { border-color: #fff !important; }
+[data-testid="stChatInput"] button {
+    background: var(--accent) !important;
+    border-radius: 11px !important;
+    color: white;
+}
+[data-testid="stChatInput"] button:hover { background: var(--accent-dark) !important; }
+[data-testid="stExpander"] details {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--panel);
+}
+[data-testid="stExpander"] summary { padding: .8rem 1rem; }
+[data-testid="stExpander"] summary p,
+[data-testid="stExpander"] [data-testid="stExpanderDetails"] p {
+    color: var(--panel-ink) !important;
+}
+[data-testid="stExpander"] summary p { font-weight: 600; }
+[data-testid="stExpander"] summary svg { color: var(--accent); }
+[data-testid="stBaseButton-secondary"],
+[data-testid="stBaseButton-primary"] {
+    border-radius: 10px !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-weight: 600 !important;
+}
+[data-testid="stBaseButton-primary"] {
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+}
+[data-testid="stBaseButton-primary"]:hover {
+    background: var(--accent-dark) !important;
+    border-color: var(--accent-dark) !important;
+}
+[data-testid="stSidebar"] [data-testid="stBaseButton-secondary"] {
+    background: rgba(255,255,255,.08) !important;
+    border-color: rgba(255,255,255,.12) !important;
+}
+[data-testid="stSidebar"] [data-testid="stBaseButton-secondary"]:hover { background: rgba(255,255,255,.16) !important; }
+.stAppDeployButton,
+button.stAppDeployButton,
+[data-testid="stAppDeployButton"],
+[data-testid="stAppDeployButton"] button { display: none !important; }
+[data-testid="stSidebar"] .stButton button { width: 100%; }
+[data-testid="stFileUploader"] {
+    position: relative;
+    z-index: 1;
+    display: block !important;
+    width: 100%;
+    min-width: 3rem;
+}
+[data-testid="stFileUploader"] section {
+    position: relative;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 58px;
+    min-height: 58px;
+    box-sizing: border-box;
+    padding: 0 !important;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--panel) !important;
+}
+[data-testid="stFileUploader"] section::before {
+    content: none;
+}
+[data-testid="stFileUploader"] section > div {
+    justify-content: center;
+    padding: 0 !important;
+}
+[data-testid="stFileUploader"] [data-testid="stFileUploaderDropzoneInstructions"],
+[data-testid="stFileUploader"] section small {
+    display: none !important;
+}
+[data-testid="stFileUploader"] section > span {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+[data-testid="stFileUploader"] section button {
+    width: 100%;
+    min-width: 3rem;
+    min-height: 58px;
+    height: 58px;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: var(--panel-ink) !important;
+    font-size: 0 !important;
+    display: grid !important;
+    place-items: center !important;
+}
+[data-testid="stFileUploader"] section button span,
+[data-testid="stFileUploader"] section button [data-testid="stIconMaterial"],
+[data-testid="stFileUploader"] section button [data-testid="stMarkdownContainer"] {
+    display: none !important;
+}
+.st-emotion-cache-1uufcrr {
+    align-content: center !important;
+}
+.st-emotion-cache-jchovf {
+    justify-content: center !important;
+}
+[data-testid="stFileUploader"] section button::before {
+    content: "+";
+    font-size: 1.65rem;
+    font-weight: 400;
+    line-height: 1;
+}
+[data-testid="stFileUploader"] section button:hover::before { color: #b8d9c3; }
+@media (max-width: 700px) {
+    [data-testid="stFileUploader"] {
+        min-width: 3rem;
+    }
+}
+
+/* DARK_MODE_START */
+.stApp, [data-testid="stSidebar"], [data-testid="stHeader"],
+[data-testid="stBottom"], [data-testid="stBottomBlockContainer"] {
+    background-color: #173c30; color: #e8f2eb;
+}
+[data-testid="stSidebar"] { border-right: 1px solid #315d4a; }
+.stApp p, .stApp li, .stApp label,
+.stApp h1, .stApp h2, .stApp h3 { color: #e8f2eb; }
+[data-testid="stChatMessage"] { background-color: #204a3a; border-radius: 10px; }
+[data-testid="stChatInput"],
+[data-testid="stChatInput"] div,
+[data-testid="stChatInput"] [data-baseweb="textarea"],
+[data-testid="stChatInput"] [data-baseweb="base-input"] { background-color: #285440 !important; }
+[data-testid="stChatInput"] { border: 1px solid #527664; }
+[data-testid="stChatInputTextArea"] { color: #e8f2eb !important; }
+[data-testid="stChatInputTextArea"]::placeholder { color: #a9c0b1 !important; }
+[data-testid="stSidebar"] .stButton button:not([data-testid="stBaseButton-primary"]) {
+    background-color: #285440; color: #e8f2eb; border: 1px solid #527664;
+}
+[data-testid="stSidebar"] .stButton button:disabled,
+[data-testid="stSidebar"] .stButton button:disabled p {
+    color: #d5e7db !important; background-color: #315d4a; opacity: 1;
+}
+[data-testid="stSidebar"] .stButton button p { color: inherit !important; }
+[data-testid="stExpander"] details,
+[data-testid="stExpander"] summary,
+[data-testid="stExpanderDetails"] {
+    background-color: #204a3a !important; color: #e8f2eb !important;
+}
+[data-testid="stExpander"] details { border: 1px solid #527664 !important; }
+[data-testid="stExpander"] summary p,
+[data-testid="stExpander"] summary span,
+[data-testid="stExpander"] [data-testid="stIconMaterial"] { color: #e8f2eb !important; }
+[data-testid="stMainBlockContainer"] [data-testid="stBaseButton-secondary"] {
+    background-color: #285440 !important; color: #e8f2eb !important; border: 1px solid #527664 !important;
+}
+.stApp table, .stApp th, .stApp td { color: #e8f2eb !important; border-color: #527664 !important; }
+.stApp thead th { background-color: #285440 !important; }
+.stApp tbody td { background-color: #204a3a !important; }
+.stApp tbody tr:nth-child(even) td { background-color: #1b4234 !important; }
+[data-testid="stSidebar"] hr, .stApp hr { border-color: #527664; }
+/* DARK_MODE_END */
