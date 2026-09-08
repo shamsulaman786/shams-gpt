@@ -207,14 +207,15 @@ st.markdown(
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
     :root {
-        --ink: #18352b;
-        --muted: #5e766a;
-        --paper: #eef4ef;
-        --panel: #fbfdf9;
-        --line: #d2e0d5;
-        --accent: #357b5d;
-        --accent-dark: #286148;
-        --sidebar: #12382c;
+        --ink: #153b2b;
+        --muted: #557565;
+        --paper: #e8f4eb;
+        --panel: #1d5a40;
+        --panel-ink: #edf8f0;
+        --line: #c5ddcc;
+        --accent: #2f8158;
+        --accent-dark: #236844;
+        --sidebar: #10402d;
     }
 
     .stApp {
@@ -284,18 +285,24 @@ st.markdown(
         border: 1px solid var(--line);
         border-radius: 18px;
         background: var(--panel);
-        box-shadow: 0 8px 28px rgba(43, 35, 26, .05);
+        box-shadow: 0 8px 28px rgba(24, 71, 44, .08);
         margin: .9rem 0;
         padding: 1rem 1.15rem;
+    }
+    [data-testid="stChatMessage"] p,
+    [data-testid="stChatMessage"] li,
+    [data-testid="stChatMessage"] strong,
+    [data-testid="stChatMessage"] code {
+        color: var(--panel-ink) !important;
     }
     [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] p {
         line-height: 1.7;
     }
     [data-testid="stChatInput"] {
-        border: 1px solid #d9d1c6;
+        border: 1px solid #bdd8c5;
         border-radius: 16px;
         background: var(--panel);
-        box-shadow: 0 10px 30px rgba(43, 35, 26, .11);
+        box-shadow: 0 10px 30px rgba(24, 71, 44, .13);
         padding: .25rem .35rem;
         margin: 0 auto;
         max-width: 820px;
@@ -307,8 +314,22 @@ st.markdown(
     }
     [data-testid="stChatInput"] textarea {
         font-family: 'DM Sans', sans-serif;
-        color: var(--ink) !important;
+        color: var(--panel-ink) !important;
+        caret-color: var(--panel-ink) !important;
     }
+    [data-testid="stChatInput"] textarea::placeholder { color: #b8d9c3 !important; }
+    [data-testid="stChatInput"]:focus-within {
+        border-color: #fff !important;
+        box-shadow: 0 0 0 2px rgba(184, 217, 195, .3),
+            0 10px 30px rgba(24, 71, 44, .13) !important;
+    }
+    [data-testid="stChatInputTextArea"]:focus,
+    [data-testid="stChatInputTextArea"]:focus-visible {
+        outline: none !important;
+        border-color: #b8d9c3 !important;
+        box-shadow: none !important;
+    }
+    .st-emotion-cache-jchovf:focus-within { border-color: #fff !important; }
     [data-testid="stChatInput"] button {
         background: var(--accent) !important;
         border-radius: 11px !important;
@@ -318,9 +339,13 @@ st.markdown(
     [data-testid="stExpander"] details {
         border: 1px solid var(--line);
         border-radius: 14px;
-        background: rgba(255,253,250,.72);
+        background: var(--panel);
     }
     [data-testid="stExpander"] summary { padding: .8rem 1rem; }
+    [data-testid="stExpander"] summary p,
+    [data-testid="stExpander"] [data-testid="stExpanderDetails"] p {
+        color: var(--panel-ink) !important;
+    }
     [data-testid="stExpander"] summary p { font-weight: 600; }
     [data-testid="stExpander"] summary svg { color: var(--accent); }
     [data-testid="stBaseButton-secondary"],
