@@ -133,12 +133,12 @@ if st.session_state.dark_mode:
         <style>
         .stApp, [data-testid="stSidebar"], [data-testid="stHeader"],
         [data-testid="stBottom"], [data-testid="stBottomBlockContainer"] {
-            background-color: #1b1b1d; color: #e8e8e8;
+            background-color: #173c30; color: #e8f2eb;
         }
-        [data-testid="stSidebar"] { border-right: 1px solid #333; }
+        [data-testid="stSidebar"] { border-right: 1px solid #315d4a; }
         .stApp p, .stApp li, .stApp label,
-        .stApp h1, .stApp h2, .stApp h3 { color: #e8e8e8; }
-        [data-testid="stChatMessage"] { background-color: #232326; border-radius: 10px; }
+        .stApp h1, .stApp h2, .stApp h3 { color: #e8f2eb; }
+        [data-testid="stChatMessage"] { background-color: #204a3a; border-radius: 10px; }
 
         /* Chat input: the box and the text typed into it */
         /* BaseWeb wraps the textarea in several divs that keep a light
@@ -147,20 +147,20 @@ if st.session_state.dark_mode:
         [data-testid="stChatInput"] div,
         [data-testid="stChatInput"] [data-baseweb="textarea"],
         [data-testid="stChatInput"] [data-baseweb="base-input"] {
-            background-color: #2a2a2e !important;
+            background-color: #285440 !important;
         }
-        [data-testid="stChatInput"] { border: 1px solid #444; }
-        [data-testid="stChatInputTextArea"] { color: #e8e8e8 !important; }
-        [data-testid="stChatInputTextArea"]::placeholder { color: #9aa0a6 !important; }
+        [data-testid="stChatInput"] { border: 1px solid #527664; }
+        [data-testid="stChatInputTextArea"] { color: #e8f2eb !important; }
+        [data-testid="stChatInputTextArea"]::placeholder { color: #a9c0b1 !important; }
 
         /* Sidebar buttons, including the disabled current-chat entry */
         [data-testid="stSidebar"] .stButton
             button:not([data-testid="stBaseButton-primary"]) {
-            background-color: #2a2a2e; color: #e8e8e8; border: 1px solid #444;
+            background-color: #285440; color: #e8f2eb; border: 1px solid #527664;
         }
         [data-testid="stSidebar"] .stButton button:disabled,
         [data-testid="stSidebar"] .stButton button:disabled p {
-            color: #cfcfcf !important; background-color: #35353a; opacity: 1;
+            color: #d5e7db !important; background-color: #315d4a; opacity: 1;
         }
         [data-testid="stSidebar"] .stButton button p { color: inherit !important; }
 
@@ -168,34 +168,34 @@ if st.session_state.dark_mode:
         [data-testid="stExpander"] details,
         [data-testid="stExpander"] summary,
         [data-testid="stExpanderDetails"] {
-            background-color: #232326 !important;
-            color: #e8e8e8 !important;
+            background-color: #204a3a !important;
+            color: #e8f2eb !important;
         }
-        [data-testid="stExpander"] details { border: 1px solid #444 !important; }
+        [data-testid="stExpander"] details { border: 1px solid #527664 !important; }
         [data-testid="stExpander"] summary p,
         [data-testid="stExpander"] summary span,
         [data-testid="stExpander"] [data-testid="stIconMaterial"] {
-            color: #e8e8e8 !important;
+            color: #e8f2eb !important;
         }
 
         /* Buttons in the main pane, e.g. Generate summary */
         [data-testid="stMainBlockContainer"] [data-testid="stBaseButton-secondary"] {
-            background-color: #2a2a2e !important;
-            color: #e8e8e8 !important;
-            border: 1px solid #444 !important;
+            background-color: #285440 !important;
+            color: #e8f2eb !important;
+            border: 1px solid #527664 !important;
         }
 
         /* Markdown tables in assistant replies */
         .stApp table, .stApp th, .stApp td {
-            color: #e8e8e8 !important;
-            border-color: #444 !important;
+            color: #e8f2eb !important;
+            border-color: #527664 !important;
         }
-        .stApp thead th { background-color: #2a2a2e !important; }
-        .stApp tbody td { background-color: #232326 !important; }
-        .stApp tbody tr:nth-child(even) td { background-color: #1f1f22 !important; }
+        .stApp thead th { background-color: #285440 !important; }
+        .stApp tbody td { background-color: #204a3a !important; }
+        .stApp tbody tr:nth-child(even) td { background-color: #1b4234 !important; }
 
         /* Section separators */
-        [data-testid="stSidebar"] hr, .stApp hr { border-color: #55555e; }
+        [data-testid="stSidebar"] hr, .stApp hr { border-color: #527664; }
         </style>
         """,
         unsafe_allow_html=True,
@@ -204,6 +204,146 @@ if st.session_state.dark_mode:
 st.markdown(
     """
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+    :root {
+        --ink: #18352b;
+        --muted: #5e766a;
+        --paper: #eef4ef;
+        --panel: #fbfdf9;
+        --line: #d2e0d5;
+        --accent: #357b5d;
+        --accent-dark: #286148;
+        --sidebar: #12382c;
+    }
+
+    .stApp {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: 'DM Sans', sans-serif;
+    }
+    [data-testid="stHeader"] { background: transparent; }
+    [data-testid="stBottom"],
+    [data-testid="stBottom"] > div,
+    [data-testid="stBottomBlockContainer"],
+    [data-testid="stBottomBlockContainer"] > div {
+        background: var(--paper) !important;
+        border-top: 0 !important;
+    }
+    [data-testid="stMainBlockContainer"] {
+        max-width: 1120px;
+        padding-top: 3rem;
+        padding-bottom: 8rem;
+    }
+    [data-testid="stSidebar"] {
+        background: var(--sidebar);
+        border-right: 0;
+    }
+    [data-testid="stSidebar"] * { color: #edf0ed; }
+    [data-testid="stSidebar"] hr { border-color: rgba(255,255,255,.14); }
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3 {
+        font-family: 'Space Grotesk', sans-serif;
+        letter-spacing: 0;
+    }
+    h1, h2, h3 {
+        color: var(--ink);
+        font-family: 'Space Grotesk', sans-serif;
+        letter-spacing: 0;
+    }
+    h1 { font-size: clamp(2rem, 4vw, 3.35rem) !important; line-height: 1.05 !important; }
+    [data-testid="stCaptionContainer"] { color: var(--muted); }
+    .empty-state {
+        max-width: 620px;
+        margin: 5.5rem auto 0;
+        text-align: center;
+    }
+    .empty-state-kicker {
+        color: var(--accent);
+        font-size: .72rem;
+        font-weight: 700;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+    }
+    .empty-state-title {
+        color: var(--ink);
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 2rem;
+        font-weight: 600;
+        line-height: 1.15;
+        margin-top: .8rem;
+    }
+    .empty-state-copy {
+        color: var(--muted);
+        font-size: 1rem;
+        margin-top: .65rem;
+    }
+
+    [data-testid="stChatMessage"] {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--panel);
+        box-shadow: 0 8px 28px rgba(43, 35, 26, .05);
+        margin: .9rem 0;
+        padding: 1rem 1.15rem;
+    }
+    [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] p {
+        line-height: 1.7;
+    }
+    [data-testid="stChatInput"] {
+        border: 1px solid #d9d1c6;
+        border-radius: 16px;
+        background: var(--panel);
+        box-shadow: 0 10px 30px rgba(43, 35, 26, .11);
+        padding: .25rem .35rem;
+        margin: 0 auto;
+        max-width: 820px;
+    }
+    [data-testid="stChatInput"] > div,
+    [data-testid="stChatInput"] [data-baseweb="textarea"],
+    [data-testid="stChatInput"] [data-baseweb="base-input"] {
+        background: var(--panel) !important;
+    }
+    [data-testid="stChatInput"] textarea {
+        font-family: 'DM Sans', sans-serif;
+        color: var(--ink) !important;
+    }
+    [data-testid="stChatInput"] button {
+        background: var(--accent) !important;
+        border-radius: 11px !important;
+        color: white;
+    }
+    [data-testid="stChatInput"] button:hover { background: var(--accent-dark) !important; }
+    [data-testid="stExpander"] details {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgba(255,253,250,.72);
+    }
+    [data-testid="stExpander"] summary { padding: .8rem 1rem; }
+    [data-testid="stExpander"] summary p { font-weight: 600; }
+    [data-testid="stExpander"] summary svg { color: var(--accent); }
+    [data-testid="stBaseButton-secondary"],
+    [data-testid="stBaseButton-primary"] {
+        border-radius: 10px !important;
+        font-family: 'DM Sans', sans-serif !important;
+        font-weight: 600 !important;
+    }
+    [data-testid="stBaseButton-primary"] {
+        background: var(--accent) !important;
+        border-color: var(--accent) !important;
+    }
+    [data-testid="stBaseButton-primary"]:hover {
+        background: var(--accent-dark) !important;
+        border-color: var(--accent-dark) !important;
+    }
+    [data-testid="stSidebar"] [data-testid="stBaseButton-secondary"] {
+        background: rgba(255,255,255,.08) !important;
+        border-color: rgba(255,255,255,.12) !important;
+    }
+    [data-testid="stSidebar"] [data-testid="stBaseButton-secondary"]:hover {
+        background: rgba(255,255,255,.16) !important;
+    }
     .stAppDeployButton,
     button.stAppDeployButton,
     [data-testid="stAppDeployButton"],
@@ -292,6 +432,18 @@ with st.expander("📋 Summarize Conversation"):
                 st.error(f"Could not summarize: {e}")
         if st.session_state.summary:
             st.markdown(st.session_state.summary)
+
+if not st.session_state.messages:
+    st.markdown(
+        """
+        <div class="empty-state">
+            <div class="empty-state-kicker">A fresh conversation</div>
+            <div class="empty-state-title">Welcome to ShamsGPT</div>
+            <div class="empty-state-copy">Bring a question, an idea, or a problem worth thinking through.</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 # --- Chat history -----------------------------------------------------------
 for message in st.session_state.messages:
