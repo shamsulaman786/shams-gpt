@@ -17,13 +17,13 @@ from openai import OpenAI
 # import os
 
 # load_dotenv("/var/www/html/learning-ai/.env", override=True)
-
+APP_NAME = st.secrets.get("APP_NAME", "ShamsGPT")
 MODEL = "openai/gpt-oss-20b"
 CHATS_DIR = Path(__file__).parent / "chats"
 CHATS_DIR.mkdir(exist_ok=True)
 
 # Configure the page
-st.set_page_config(page_title="My ChatBot", page_icon="🤖", layout="wide")
+st.set_page_config(page_title=APP_NAME, page_icon="🤖", layout="wide")
 
 # Initialize the OpenAI client with OpenRouter
 api_key = st.secrets.get("OPENROUTER_API_KEY")
@@ -38,7 +38,7 @@ client = OpenAI(
     api_key=api_key,
     default_headers={
         "HTTP-Referer": "http://localhost:8501",
-        "X-Title": "My ChatBot",
+        "X-Title": st.secrets.get("APP_NAME"),
     },
 )
 
@@ -502,7 +502,7 @@ if prompt := st.chat_input("What would you like to know?"):
                 stream=True,
                 extra_headers={
                     "HTTP-Referer": "http://localhost:8501",
-                    "X-Title": "My ChatBot",
+                    "X-Title": st.secrets.get("APP_NAME"),
                 },
                 extra_body={"provider": {"data_collection": "deny"}},
             )
